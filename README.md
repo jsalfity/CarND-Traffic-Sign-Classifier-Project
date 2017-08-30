@@ -47,54 +47,37 @@ there is less spatial relationship's that are possible in each image the network
 
 ###Design and Test a Model Architecture
 
+#### Basic Data Set Summary
+
 The training images were all stripped of their 3 channel color dimension and changed to grayscale..
 In addition, the training images were normalized, so that the grayscale values ranged from 0 to 1.
 Grayscale and normalization give the network less relationships to learn. I chose not to alter or augment the data set, because the classifier converged with nearly a 95% percent accuracy through just the training set.
 Had I wanted higher accuracy, I could rotate the image, blur the image, sharpen the image, etc.
 
+![alt text][image2]
 
 
-####2. Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
+####2.Model Architecture
 
-My final model consisted of the following layers:
+The LeNet architecture was used almost exactly the same as the lab exercise.
+The activation function is the Rectified Linear Unit.
+VALID padding is used.
+There are two convolution layers and three fully connected layers, with the last being the logits.
+In between layers 2 and 3, the image gets flattened. 
 
-| Layer         		|     Description	        					| 
-|:---------------------:|:---------------------------------------------:| 
-| Input         		| 32x32x3 RGB image   							| 
-| Convolution 3x3     	| 1x1 stride, same padding, outputs 32x32x64 	|
-| RELU					|												|
-| Max pooling	      	| 2x2 stride,  outputs 16x16x64 				|
-| Convolution 3x3	    | etc.      									|
-| Fully connected		| etc.        									|
-| Softmax				| etc.        									|
-|						|												|
-|						|												|
- 
+####3. Trained Model Hyperparameters
 
+The training was done on a NVIDIA Quadro M1000M graphics card. The solution converged with 200 Epochs, 
+a batch size of 156 and a learning rate of 0.00097
 
-####3. Describe how you trained your model. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.
+####4. Approach Taken
 
-To train the model, I used an ....
-
-####4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
+As mentioned, the exact same LeNet network was used as in the lab example.
 
 My final model results were:
-* training set accuracy of ?
-* validation set accuracy of ? 
-* test set accuracy of ?
-
-If an iterative approach was chosen:
-* What was the first architecture that was tried and why was it chosen?
-* What were some problems with the initial architecture?
-* How was the architecture adjusted and why was it adjusted? Typical adjustments could include choosing a different model architecture, adding or taking away layers (pooling, dropout, convolution, etc), using an activation function or changing the activation function. One common justification for adjusting an architecture would be due to overfitting or underfitting. A high accuracy on the training set but low accuracy on the validation set indicates over fitting; a low accuracy on both sets indicates under fitting.
-* Which parameters were tuned? How were they adjusted and why?
-* What are some of the important design choices and why were they chosen? For example, why might a convolution layer work well with this problem? How might a dropout layer help with creating a successful model?
-
-If a well known architecture was chosen:
-* What architecture was chosen?
-* Why did you believe it would be relevant to the traffic sign application?
-* How does the final model's accuracy on the training, validation and test set provide evidence that the model is working well?
- 
+* training set accuracy of 100%
+* validation set accuracy of 95% 
+* test set accuracy of 95%
 
 ###Test a Model on New Images
 
