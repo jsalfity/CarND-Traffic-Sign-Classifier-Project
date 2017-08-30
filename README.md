@@ -12,8 +12,8 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./imagelinks/signcolor1.png "signcolor"
-[image2]: ./imagelinks/signgray1.png "signgray"
+[image1]: ./imagelinks/sign_color1.png "signcolor"
+[image2]: ./imagelinks/sign_gray1.png "signgray"
 
 [image3]: ./examples/random_noise.jpg "Random Noise"
 [image4]: ./examples/placeholder.png "Traffic Sign 1"
