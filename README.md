@@ -14,8 +14,8 @@ The goals / steps of this project are the following:
 
 [image1]: ./imagelinks/sign_color1.png "signcolor"
 [image2]: ./imagelinks/sign_gray1.png "signgray"
+[image3]: ./imagelinks/german_examples.png "germans"
 
-[image3]: ./examples/random_noise.jpg "Random Noise"
 [image4]: ./examples/placeholder.png "Traffic Sign 1"
 [image5]: ./examples/placeholder.png "Traffic Sign 2"
 [image6]: ./examples/placeholder.png "Traffic Sign 3"
@@ -81,48 +81,44 @@ My final model results were:
 
 ###Test a Model on New Images
 
-####1. Choose five German traffic signs found on the web and provide them in the report. For each image, discuss what quality or qualities might be difficult to classify.
+####1. German Traffic Signs
 
-Here are five German traffic signs that I found on the web:
+6 german traffic signs were acquired from off the web. 
+The signs contained the same dimensionality as the train images.
 
-![alt text][image4] ![alt text][image5] ![alt text][image6] 
-![alt text][image7] ![alt text][image8]
+![alt text][image3]
 
-The first image might be difficult to classify because ...
-
-####2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the "Stand Out Suggestions" part of the rubric).
+####2. Model's Prediction
 
 Here are the results of the prediction:
 
 | Image			        |     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| Stop Sign      		| Stop sign   									| 
-| U-turn     			| U-turn 										|
-| Yield					| Yield											|
-| 100 km/h	      		| Bumpy Road					 				|
-| Slippery Road			| Slippery Road      							|
+| Speed Limit (30km/h)  | Speed Limit (30km/h)  						| 
+| Bumpy Road   			| Bicycles Crossing 							|
+| Ahead Only			| Ahead Only									|
+| No Vehicles	    	| Priority Road  				 				|
+| Go straight or Left	| Go straight or Left							|
+| General Caution		| General Caution    							|
 
 
-The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. This compares favorably to the accuracy on the test set of ...
+The model was able to correctly guess 4 of the 6 traffic signs, which gives an accuracy of 66%. 
 
-####3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
-
-The code for making predictions on my final model is located in the 11th cell of the Ipython notebook.
-
-For the first image, the model is relatively sure that this is a stop sign (probability of 0.6), and the image does contain a stop sign. The top five soft max probabilities were
+####3. Softmax Probabilities for German Signs
+Below are the predictions.
 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| .60         			| Stop sign   									| 
-| .20     				| U-turn 										|
-| .05					| Yield											|
-| .04	      			| Bumpy Road					 				|
-| .01				    | Slippery Road      							|
+| Speed Limit (30km/h)  | Correct, 99% 									| 
+| Bumpy Road   			| Incorrect, 95%								|
+| Ahead Only			| Correct, 99%									|
+| No Vehicles	    	| Incorrect, 80%			 					|
+| Go straight or Left	| Correct, 99%									|
+| General Caution		| Correct, 100%    								|
 
-
-For the second image ... 
-
-### (Optional) Visualizing the Neural Network (See Step 4 of the Ipython notebook for more details)
-####1. Discuss the visual output of your trained network's feature maps. What characteristics did the neural network use to make classifications?
-
-
+The second and fourth traffic sign were the culprits, i.e. got classified incorrectly.
+It is interesting to note that the probability was only 80% confident, compared to nearly 99% or 100% in all other 4 images.
+This suggests that the network knew it was struggling with the image.
+In a real world application, we could set a lower limit on predictions confidence.
+In the case of the self driving car, we could say the car will only take action when it is >99% confident. 
+Otherwise, notify the driver and trust the driver's input.
