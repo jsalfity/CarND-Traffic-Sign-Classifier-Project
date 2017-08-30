@@ -67,8 +67,8 @@ In between layers 2 and 3, the image gets flattened.
 
 ####3. Trained Model Hyperparameters
 
-The training was done on a NVIDIA Quadro M1000M graphics card. The solution converged with 200 Epochs, 
-a batch size of 156 and a learning rate of 0.00097
+The training was done on a NVIDIA Quadro M1000M graphics card. The solution converged with 50 Epochs, 
+a batch size of 120 and a learning rate of 0.00097
 
 ####4. Approach Taken
 
@@ -76,8 +76,7 @@ As mentioned, the exact same LeNet network was used as in the lab example.
 
 My final model results were:
 * training set accuracy of 100%
-* validation set accuracy of 95% 
-* test set accuracy of 95%
+* validation set accuracy of 94%
 
 ###Test a Model on New Images
 
