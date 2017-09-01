@@ -134,7 +134,7 @@ Below are the predictions.
 | Go straight or Left	| Correct, 100%									|
 | General Caution		| Correct, 100%    								|
 
-The third traffic sign were the culprits, i.e. got classified incorrectly.
+The third traffic sign was the culprit, i.e. got classified incorrectly.
 It is interesting to note that the probability was only 98% confident, compared to nearly 99% or 100% in all other 4 images.
 This suggests that the network knew it was struggling with the image.
 In a real world application, we could set a lower limit on predictions confidence.
