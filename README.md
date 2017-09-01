@@ -60,10 +60,26 @@ Had I wanted higher accuracy, I could rotate the image, blur the image, sharpen 
 ####2.Model Architecture
 
 The LeNet architecture was used almost exactly the same as the lab exercise.
-The activation function is the Rectified Linear Unit.
-VALID padding is used.
+
 There are two convolution layers and three fully connected layers, with the last being the logits.
 In between layers 2 and 3, the image gets flattened. 
+
+Layer 1 to 2 takes an input of 32x32x1, uses VALID padding, and outputs to a nuerons with dimensions 28x28x6. 
+The convolution filter had shape 5x5x1x6 and the stride was 1 and max pooling was performed.
+
+Layer 2 to 3 takes the input of 28x28x6, uses VALID padding, and outputs to nuerons with dimensions 10x10x16.
+The covolution filter had shape 1x2x2x1 and the stride was 1 and max pooling was performed.
+
+Layer 3 to 4 takes the input of 10x10x16, uses VALID padding, and outputs to nuerons with dimensions 5x5x16.
+The covolution filter had shape 1x2x2x1 and the stride was 1 and max pooling was performed.
+
+Next, the image was flattnened and the layers were fully connected.
+Layer 3 to 4 The input was 5x5x16 which was output to 400 nuerons.
+Layer 4 to 5 takes 400 nuerons and connects to 120 nuerons.
+Layer 5 to output, the last layer connects the 84 nuerons to the 43 output classes.
+
+
+The activation function used in each nueron was the Rectified Linear Unit.
 
 ####3. Trained Model Hyperparameters
 
@@ -73,10 +89,12 @@ a batch size of 120 and a learning rate of 0.00097
 ####4. Approach Taken
 
 As mentioned, the exact same LeNet network was used as in the lab example.
+The LeNet architecture ended up performing the classification well, with a training accuracy of 100% and a validation accuracy of 94%. I first used a learning rate of 0.001 with only 20 EPOCHS. I saw that the training set accuracy was not hitting 100%, which it should. So by slowing down the rate of learning and increasing the time to learn, the training set accuracy would reach 100%.
 
 My final model results were:
 * training set accuracy of 100%
-* validation set accuracy of 94%
+* validation set accuracy of 93.4%
+* test set accuracy of 92%
 
 ###Test a Model on New Images
 
@@ -94,29 +112,30 @@ Here are the results of the prediction:
 | Image			        |     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
 | Speed Limit (30km/h)  | Speed Limit (30km/h)  						| 
-| Bumpy Road   			| Bicycles Crossing 							|
+| Bumpy Road   			| Bumpy Road							|
 | Ahead Only			| Ahead Only									|
-| No Vehicles	    	| Priority Road  				 				|
+| No Vehicles	    	| Speed Limit (50 km/h)  				 				|
 | Go straight or Left	| Go straight or Left							|
 | General Caution		| General Caution    							|
 
 
-The model was able to correctly guess 4 of the 6 traffic signs, which gives an accuracy of 66%. 
+The model was able to correctly guess 5 of the 6 traffic signs, which gives an accuracy of 83%.
+The test set accuracy was 92%. The granularity of having only 6 traffic signs is 16%, so perhaps by having more traffic signs from the web, the test set accuracy of 92% would be represented. 
 
 ####3. Softmax Probabilities for German Signs
 Below are the predictions.
 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| Speed Limit (30km/h)  | Correct, 99% 									| 
-| Bumpy Road   			| Incorrect, 95%								|
+| Speed Limit (30km/h)  | Correct, 100% 									| 
+| Bumpy Road   			| Correct, 99%								|
 | Ahead Only			| Correct, 99%									|
-| No Vehicles	    	| Incorrect, 80%			 					|
-| Go straight or Left	| Correct, 99%									|
+| No Vehicles	    	| Incorrect, 98%			 					|
+| Go straight or Left	| Correct, 100%									|
 | General Caution		| Correct, 100%    								|
 
-The second and fourth traffic sign were the culprits, i.e. got classified incorrectly.
-It is interesting to note that the probability was only 80% confident, compared to nearly 99% or 100% in all other 4 images.
+The third traffic sign were the culprits, i.e. got classified incorrectly.
+It is interesting to note that the probability was only 98% confident, compared to nearly 99% or 100% in all other 4 images.
 This suggests that the network knew it was struggling with the image.
 In a real world application, we could set a lower limit on predictions confidence.
 In the case of the self driving car, we could say the car will only take action when it is >99% confident. 
